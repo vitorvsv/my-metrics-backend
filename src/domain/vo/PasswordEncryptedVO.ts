@@ -93,17 +93,17 @@ export class PasswordEncryptedVO {
     }
 
     static match(
-        plaintext: string,
-        password: string,
+        plaintextPassword: string,
+        ciphertext: string,
         iv: string,
         tag: Buffer,
     ): boolean {
-        const plaintextDecrypted = PasswordEncryptedVO.decrypt(
-            password,
+        const plaintextPasswordDecrypted = PasswordEncryptedVO.decrypt(
+            ciphertext,
             iv,
             tag,
         );
-        return plaintext === plaintextDecrypted;
+        return plaintextPassword === plaintextPasswordDecrypted;
     }
 }
 

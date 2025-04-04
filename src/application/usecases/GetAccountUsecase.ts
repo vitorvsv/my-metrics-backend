@@ -14,7 +14,7 @@ export class GetAccountUseCase {
             username: account?.getUsername().getValue() || '',
             password: account?.getPassword().getCiphertext() || '',
             iv: account?.getPassword().getIv() || '',
-            tag: account?.getPassword().getTag() || new Buffer(''),
+            tag: account?.getPassword().getTag() || Buffer.from(''),
         };
     }
 }
