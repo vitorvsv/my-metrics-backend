@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
 import { AccountEntity } from '../../domain/entities/AccountEntity';
+// import { iPasswordEncryptedVO } from '../../domain/vo/PasswordEncryptedVO';
 
 export interface AccountRepository {
     createAccount(account: AccountEntity): Promise<AccountEntity>;
@@ -21,7 +22,9 @@ export class AccountRepositoryDatabase implements AccountRepository {
                         name: account.getName().getValue(),
                         email: account.getEmail().getValue(),
                         username: account.getUsername().getValue(),
-                        password: account.getPassword().getValue(),
+                        password: account.getPassword().getCiphertext(),
+                        iv: account.getPassword().getIv(),
+                        tag: account.getPassword().getTag(),
                     },
                 ])
                 .execute();
@@ -40,12 +43,16 @@ export class AccountRepositoryDatabase implements AccountRepository {
                 .where('account.account_id = :accountId', { accountId })
                 .execute();
             if (!accountData) return null;
-            const account = new AccountEntity(
+            const account = AccountEntity.restore(
                 accountData.account_id,
                 accountData.name,
                 accountData.email,
                 accountData.username,
-                accountData.password,
+                {
+                    ciphertext: accountData.password,
+                    iv: accountData.iv,
+                    tag: accountData.tag,
+                },
             );
             return account;
         } catch (err) {

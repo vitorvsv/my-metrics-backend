@@ -12,6 +12,9 @@ export class GetAccountUseCase {
             name: account?.getName().getValue() || '',
             email: account?.getEmail().getValue() || '',
             username: account?.getUsername().getValue() || '',
+            password: account?.getPassword().getCiphertext() || '',
+            iv: account?.getPassword().getIv() || '',
+            tag: account?.getPassword().getTag() || new Buffer(''),
         };
     }
 }
@@ -21,4 +24,7 @@ type Output = {
     name: string;
     email: string;
     username: string;
+    password: string;
+    iv: string;
+    tag: Buffer;
 };
