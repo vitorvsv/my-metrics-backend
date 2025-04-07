@@ -1,28 +1,39 @@
 import { UsernameVO } from '../vo/UsernameVO';
 import { EmailVO } from '../vo/EmailVO';
 import { NameVO } from '../vo/NameVO';
-import { PasswordVO } from '../vo/PasswordVO';
 import { UUIDVO } from '../vo/UUIDVO';
+import {
+    PasswordEncryptedVO,
+    iPasswordEncryptedVO,
+} from '../vo/PasswordEncryptedVO';
 
 export class AccountEntity {
     private accountId: UUIDVO;
     private name: NameVO;
     private email: EmailVO;
     private username: UsernameVO;
-    private password: PasswordVO;
+    private password: PasswordEncryptedVO;
 
     constructor(
         accountId: string,
         name: string,
         email: string,
         username: string,
-        password: string,
+        password: string | iPasswordEncryptedVO,
     ) {
         this.accountId = new UUIDVO(accountId);
         this.name = new NameVO(name);
         this.email = new EmailVO(email);
         this.username = new UsernameVO(username);
-        this.password = new PasswordVO(password);
+
+        this.password =
+            typeof password === 'object'
+                ? PasswordEncryptedVO.restore(
+                      password.ciphertext,
+                      password.iv,
+                      password.tag,
+                  )
+                : PasswordEncryptedVO.create(password);
     }
 
     static create(
@@ -38,6 +49,16 @@ export class AccountEntity {
             username,
             password,
         );
+    }
+
+    static restore(
+        accountId: string,
+        name: string,
+        email: string,
+        username: string,
+        password: string | iPasswordEncryptedVO,
+    ) {
+        return new AccountEntity(accountId, name, email, username, password);
     }
 
     getAccountId() {
@@ -56,7 +77,7 @@ export class AccountEntity {
         return this.name;
     }
 
-    getPassword() {
+    getPassword(): PasswordEncryptedVO {
         return this.password;
     }
 }

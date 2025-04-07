@@ -7,5 +7,7 @@ create table mymetrics.account (
 	name text not null,
 	username text not null,
 	email text not null,
-	password text not null
+	password text not null,
+	iv text not null,
+	tag bytea not null
 );

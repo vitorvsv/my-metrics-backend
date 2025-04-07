@@ -6,6 +6,7 @@ import {
     AccountRepositoryDatabase,
 } from '../../../../src/infra/repositories/AccountRepository';
 import { GetAccountUseCase } from '../../../../src/application/usecases/GetAccountUsecase';
+import { PasswordEncryptedVO } from '../../../../src/domain/vo/PasswordEncryptedVO';
 
 let datasource: DataSource;
 let accountRepository: AccountRepository;
@@ -44,5 +45,24 @@ describe('Get account test suite', () => {
         expect(accountFound.name).toBe(input.name);
         expect(accountFound.email).toBe(input.email);
         expect(accountFound.username).toBe(input.username);
+    });
+
+    it('Should return an account and match password', async () => {
+        const input = {
+            name: 'Joe Doe',
+            email: `joedoe-${crypto.randomUUID()}@gmail.com`,
+            username: `joedoe-${crypto.randomUUID()}`,
+            password: 'Teste@123456',
+        };
+        const account = await signupUseCase.execute(input);
+        const accountId = account.accountId;
+        const accountFound = await getAccountUseCase.execute(accountId);
+        const match = PasswordEncryptedVO.match(
+            input.password,
+            accountFound.password,
+            accountFound.iv,
+            accountFound.tag,
+        );
+        expect(match).toBeTruthy();
     });
 });
