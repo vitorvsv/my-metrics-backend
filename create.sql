@@ -11,3 +11,14 @@ create table mymetrics.account (
 	iv text not null,
 	tag bytea not null
 );
+
+create table mymetrics.targets (
+	target_id uuid primary key,
+	description text not null,
+	start_date date not null,
+	end_date date not null,
+	value float not null,
+	status text,
+	frequency text not null,
+	account_id uuid not null
+);
