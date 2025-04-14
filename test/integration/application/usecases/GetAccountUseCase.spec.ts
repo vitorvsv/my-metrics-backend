@@ -1,11 +1,11 @@
 import * as crypto from 'crypto';
 import { DataSource } from 'typeorm';
-import { SignupUseCase } from '../../../../src/application/usecases/SignupUsecase';
+import { SignupUseCase } from '../../../../src/application/usecases/SignupUseCase';
 import {
     AccountRepository,
     AccountRepositoryDatabase,
 } from '../../../../src/infra/repositories/AccountRepository';
-import { GetAccountUseCase } from '../../../../src/application/usecases/GetAccountUsecase';
+import { GetAccountUseCase } from '../../../../src/application/usecases/GetAccountUseCase';
 import { PasswordEncryptedVO } from '../../../../src/domain/vo/PasswordEncryptedVO';
 
 let datasource: DataSource;

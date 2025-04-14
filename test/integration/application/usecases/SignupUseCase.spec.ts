@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 import { DataSource } from 'typeorm';
-import { SignupUseCase } from '../../../../src/application/usecases/SignupUsecase';
+import { SignupUseCase } from '../../../../src/application/usecases/SignupUseCase';
 import {
     AccountRepository,
     AccountRepositoryDatabase,

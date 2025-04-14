@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { SignupUseCase } from '../../application/usecases/SignupUsecase';
-import { GetAccountUseCase } from '../../application/usecases/GetAccountUsecase';
+import { SignupUseCase } from '../../application/usecases/SignupUseCase';
+import { GetAccountUseCase } from '../../application/usecases/GetAccountUseCase';
 import { AccountRepositoryDatabase } from '../repositories/AccountRepository';
 
 @Controller('accounts')
