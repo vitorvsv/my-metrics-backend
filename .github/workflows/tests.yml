@@ -6,7 +6,7 @@ jobs:
         runs-on: ubuntu-latest
         environment: tests
         env:
-            - APP_KEY: ${{ secrets.APP_KEY }}
+            APP_KEY: ${{ secrets.APP_KEY }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
