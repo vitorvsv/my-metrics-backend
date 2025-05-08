@@ -23,12 +23,12 @@ describe('Accounts', () => {
             username: 'johndoe',
             password: 'Teste@123456',
         };
-       await request(app.getHttpServer())
+        await request(app.getHttpServer())
             .post('/accounts')
             .send(input)
             .expect(201)
             .then(async (createAccountRes) => {
-                const accountId = createAccountRes?.body?.accountId || "";
+                const accountId = createAccountRes?.body?.accountId || '';
                 await request(app.getHttpServer())
                     .get(`/accounts/${accountId}`)
                     .expect(200)

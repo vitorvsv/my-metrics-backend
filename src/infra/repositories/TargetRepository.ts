@@ -29,8 +29,7 @@ export class TargetRepositoryDatabase implements TargetRepository {
                 .execute();
             return target;
         } catch (err: any) {
-            console.log('Quebrou aqui');
-            throw new Error(`Occured an error: ${err?.message}`);
+            throw new Error(`Occured an error: ${(err as Error)?.message}`);
         }
     }
 }
