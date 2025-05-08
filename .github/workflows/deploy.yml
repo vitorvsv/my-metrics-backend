@@ -66,3 +66,16 @@ jobs:
                   package.json
                   .env.example
                 retention-days: 7
+    deploy:
+      name: Deploy
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Download builded artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: my-metricts-build
+        - name: Output contents
+          run: ls
+        - name: Deploy
+          run: echo "Deploying..."
