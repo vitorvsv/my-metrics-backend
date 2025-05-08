@@ -14,12 +14,12 @@
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
-    "test:unit": "jest ./test/unit/**/*.spec.ts",
-    "test:integration": "jest test/integration/**/*.spec.ts",
+    "test:unit": "jest --testPathPattern=test/unit",
+    "test:integration": "jest --testPathPattern=test/integration",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json --testPathPattern=test/e2e"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -66,7 +66,6 @@
       "ts"
     ],
     "rootDir": "test",
-    "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },

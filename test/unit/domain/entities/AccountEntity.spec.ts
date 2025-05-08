@@ -45,14 +45,10 @@ describe('AccountEntity test suite', () => {
         expect(account.getUsername().getValue()).toEqual(input.username);
         expect(account.getEmail().getValue()).toEqual(input.email);
         expect(account.getName().getValue()).toEqual(input.name);
-        expect(
-            (account.getPassword() as PasswordEncryptedVO).getCiphertext(),
-        ).toEqual(input.password.ciphertext);
-        expect((account.getPassword() as PasswordEncryptedVO).getIv()).toEqual(
-            input.password.iv,
+        expect(account.getPassword().getCiphertext()).toEqual(
+            input.password.ciphertext,
         );
-        expect((account.getPassword() as PasswordEncryptedVO).getTag()).toEqual(
-            input.password.tag,
-        );
+        expect(account.getPassword().getIv()).toEqual(input.password.iv);
+        expect(account.getPassword().getTag()).toEqual(input.password.tag);
     });
 });

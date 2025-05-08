@@ -1,6 +1,5 @@
 import { DataSource } from 'typeorm';
 import { AccountEntity } from '../../domain/entities/AccountEntity';
-// import { iPasswordEncryptedVO } from '../../domain/vo/PasswordEncryptedVO';
 
 export interface AccountRepository {
     createAccount(account: AccountEntity): Promise<AccountEntity>;
@@ -29,8 +28,8 @@ export class AccountRepositoryDatabase implements AccountRepository {
                 ])
                 .execute();
             return account;
-        } catch (err: any) {
-            throw new Error(`Occured an error: ${err?.message}`);
+        } catch (err) {
+            throw new Error(`Occured an error: ${(err as Error)?.message}`);
         }
     }
 
@@ -56,7 +55,7 @@ export class AccountRepositoryDatabase implements AccountRepository {
             );
             return account;
         } catch (err) {
-            throw new Error(`Occured an error: ${err?.message}`);
+            throw new Error(`Occured an error: ${(err as Error)?.message}`);
         }
     }
 }

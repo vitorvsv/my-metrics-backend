@@ -1,5 +1,4 @@
 export class UsernameVO {
-
     private username: string;
 
     constructor(username: string) {
