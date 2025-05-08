@@ -8,6 +8,8 @@ jobs:
         env:
             APP_KEY: ${{ secrets.APP_KEY }}
         steps:
+            - name: Check out repository
+              uses: actions/checkout@v4
             - name: Setup Env
               uses: './.github/actions/setup-env'
             - name: Run unit tests
@@ -27,6 +29,8 @@ jobs:
             DB_PASS: ${{ secrets.DB_PASS }}
             DB_NAME: ${{ secrets.DB_NAME }}
         steps:
+            - name: Check out repository
+              uses: actions/checkout@v4
             - name: Setup Env
               uses: './.github/actions/setup-env'
             - name: Build
