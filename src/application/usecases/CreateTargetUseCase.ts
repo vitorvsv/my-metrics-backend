@@ -1,5 +1,5 @@
-import { TargetRepository } from '../../infra/repositories/TargetRepository';
-import TargetEntity from '../../domain/entities/TargetEntity';
+import { TargetRepository } from '@infra/repositories/TargetRepository';
+import TargetEntity from '@domain/entities/TargetEntity';
 
 export default class CreateTargetUseCase {
     constructor(private readonly targetRepository: TargetRepository) {}

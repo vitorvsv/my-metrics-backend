@@ -1,11 +1,11 @@
-import { UsernameVO } from '../vo/UsernameVO';
-import { EmailVO } from '../vo/EmailVO';
-import { NameVO } from '../vo/NameVO';
-import { UUIDVO } from '../vo/UUIDVO';
+import { UsernameVO } from '@domain/vo/UsernameVO';
+import { EmailVO } from '@domain/vo/EmailVO';
+import { NameVO } from '@domain/vo/NameVO';
+import { UUIDVO } from '@domain/vo/UUIDVO';
 import {
     PasswordEncryptedVO,
     iPasswordEncryptedVO,
-} from '../vo/PasswordEncryptedVO';
+} from '@domain/vo/PasswordEncryptedVO';
 
 export class AccountEntity {
     private accountId: UUIDVO;
