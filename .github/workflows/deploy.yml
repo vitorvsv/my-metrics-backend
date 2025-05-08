@@ -8,21 +8,8 @@ jobs:
         env:
             APP_KEY: ${{ secrets.APP_KEY }}
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-            - name: Set up Node.js 20
-              uses: actions/setup-node@v4
-              with:
-                node-version: 20
-            - name: Cache dependencies
-              uses: actions/cache@v4
-              id: cache-dependencies
-              with:
-                path: node_modules
-                key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-            - name: Install dependencies
-              if: steps.cache-dependencies.outputs.cache-hit != 'true'
-              run: npm ci
+            - name: Setup Env
+              uses: './.github/actions/setup-env'
             - name: Run unit tests
               run: npm run test:unit
     build:
@@ -40,21 +27,8 @@ jobs:
             DB_PASS: ${{ secrets.DB_PASS }}
             DB_NAME: ${{ secrets.DB_NAME }}
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-            - name: Set up Node.js 20
-              uses: actions/setup-node@v4
-              with:
-                node-version: 20
-            - name: Cache dependencies
-              uses: actions/cache@v4
-              id: cache-dependencies
-              with:
-                path: node_modules
-                key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-            - name: Install dependencies
-              if: steps.cache-dependencies.outputs.cache-hit != 'true'
-              run: npm ci
+            - name: Setup Env
+              uses: './.github/actions/setup-env'
             - name: Build
               run: npm run build
             - name: Upload artifact

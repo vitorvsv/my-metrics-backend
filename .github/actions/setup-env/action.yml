@@ -1,0 +1,26 @@
+name: Setup Env
+description: Checkout the repo, setup node and install dependencies
+inputs:
+  use-cache:
+    description: 'Define if the cache should be used'
+    required: false
+    default: 'true'
+runs:
+  using: composite
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - name: Cache dependencies
+      uses: actions/cache@v4
+      id: cache-dependencies
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+    - name: Install dependencies
+      if: ${{ inputs.use-cache == 'true' && steps.cache-dependencies.outputs.cache-hit != 'true' }} || ${{ inputs.use-cache != 'true' }} 
+      shell: bash
+      run: npm ci
