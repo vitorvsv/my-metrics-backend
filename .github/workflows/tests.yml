@@ -16,10 +16,12 @@ jobs:
                 node-version: 20
             - name: Cache dependencies
               uses: actions/cache@v4
+              id: cache-dependencies
               with:
                 path: node_modules
                 key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
             - name: Install dependencies
+              if: steps.cache-dependencies.outputs.cache-hit != 'true'
               run: npm ci
             - name: Run unit tests
               run: npm run test:unit
