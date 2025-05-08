@@ -1,7 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { TargetRepositoryDatabase } from '../repositories/TargetRepository';
-import CreateTargetUseCase from '../../application/usecases/CreateTargetUseCase';
+import { TargetRepositoryDatabase } from '@infra/repositories/TargetRepository';
+import CreateTargetUseCase from '@application/usecases/CreateTargetUseCase';
 
 @Controller('targets')
 export class TargetController {

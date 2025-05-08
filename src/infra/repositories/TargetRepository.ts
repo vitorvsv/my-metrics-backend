@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import TargetEntity from '../../domain/entities/TargetEntity';
+import TargetEntity from '@domain/entities/TargetEntity';
 
 export interface TargetRepository {
     createTarget(target: TargetEntity): Promise<TargetEntity>;

@@ -1,6 +1,6 @@
-import { UUIDVO } from '../../../../src/domain/vo/UUIDVO';
-import { AccountEntity } from '../../../../src/domain/entities/AccountEntity';
-import { PasswordEncryptedVO } from '../../../../src/domain/vo/PasswordEncryptedVO';
+import { UUIDVO } from '@domain/vo/UUIDVO';
+import { AccountEntity } from '@domain/entities/AccountEntity';
+import { PasswordEncryptedVO } from '@domain/vo/PasswordEncryptedVO';
 
 describe('AccountEntity test suite', () => {
     it('should create an account', () => {

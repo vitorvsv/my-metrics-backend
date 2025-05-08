@@ -1,5 +1,5 @@
-import { AccountEntity } from '../../domain/entities/AccountEntity';
-import { AccountRepository } from '../../infra/repositories/AccountRepository';
+import { AccountEntity } from '@domain/entities/AccountEntity';
+import { AccountRepository } from '@infra/repositories/AccountRepository';
 
 export class GetAccountUseCase {
     constructor(private accountRepository: AccountRepository) {}

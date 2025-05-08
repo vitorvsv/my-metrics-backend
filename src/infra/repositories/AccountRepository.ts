@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { AccountEntity } from '../../domain/entities/AccountEntity';
+import { AccountEntity } from '@domain/entities/AccountEntity';
 
 export interface AccountRepository {
     createAccount(account: AccountEntity): Promise<AccountEntity>;
