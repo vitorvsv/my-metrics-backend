@@ -14,14 +14,14 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: 20
-            # - name: Cache dependencies
-            #   uses: actions/cache@v4
-            #   id: cache-dependencies
-            #   with:
-            #     path: node_modules
-            #     key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+            - name: Cache dependencies
+              uses: actions/cache@v4
+              id: cache-dependencies
+              with:
+                path: node_modules
+                key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
             - name: Install dependencies
-              # if: steps.cache-dependencies.outputs.cache-hit != 'true'
+              if: steps.cache-dependencies.outputs.cache-hit != 'true'
               run: npm ci
             - name: Run unit tests
               run: npm run test:unit
@@ -46,14 +46,14 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: 20
-            # - name: Cache dependencies
-            #   uses: actions/cache@v4
-            #   id: cache-dependencies
-            #   with:
-            #     path: node_modules
-            #     key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+            - name: Cache dependencies
+              uses: actions/cache@v4
+              id: cache-dependencies
+              with:
+                path: node_modules
+                key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
             - name: Install dependencies
-              # if: steps.cache-dependencies.outputs.cache-hit != 'true'
+              if: steps.cache-dependencies.outputs.cache-hit != 'true'
               run: npm ci
             - name: Build
               run: npm run build
@@ -61,5 +61,8 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: my-metricts-build
-                path: dist
+                path: |
+                  dist
+                  package.json
+                  .env.example
                 retention-days: 7
