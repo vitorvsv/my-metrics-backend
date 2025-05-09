@@ -43,7 +43,7 @@ $ npm run test:cov
 - [Docker](https://www.docker.com/)
 - [SOLID](https://en.wikipedia.org/wiki/SOLID)
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-- [TDD - Test-Driven Development](https://en.wikipedia.org/wiki/Test-driven_development)
+- [TDD - Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development)
 - [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design)
 - [Clean Code](https://www.amazon.com.br/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
 - [Refactoring](https://www.amazon.com.br/Refactoring-Improving-Design-Existing-Code-dp-0134757599/dp/0134757599/)
