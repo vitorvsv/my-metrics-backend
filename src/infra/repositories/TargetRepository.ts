@@ -3,6 +3,11 @@ import TargetEntity from '@domain/entities/TargetEntity';
 
 export interface TargetRepository {
     createTarget(target: TargetEntity): Promise<TargetEntity>;
+    getTargets(
+        accountId: string,
+        offset: number,
+        limit: number,
+    ): Promise<TargetEntity[]>;
 }
 
 export class TargetRepositoryDatabase implements TargetRepository {
@@ -28,6 +33,38 @@ export class TargetRepositoryDatabase implements TargetRepository {
                 ])
                 .execute();
             return target;
+        } catch (err: any) {
+            throw new Error(`Occured an error: ${(err as Error)?.message}`);
+        }
+    }
+
+    async getTargets(
+        accountId: string,
+        offset: number,
+        limit: number,
+    ): Promise<TargetEntity[]> {
+        try {
+            const targets = await this.dataSource
+                .createQueryBuilder()
+                .select('*')
+                .from('mymetrics.targets', 'targets')
+                .where('targets.account_id = :accountId', { accountId })
+                .offset(offset)
+                .limit(limit)
+                .execute();
+            return targets.map((target) => {
+                const targetEntity = new TargetEntity(
+                    target.target_id,
+                    target.description,
+                    target.frequency,
+                    target.value,
+                    target.start_date,
+                    target.end_date,
+                    target.status,
+                    target.account_id,
+                );
+                return targetEntity;
+            });
         } catch (err: any) {
             throw new Error(`Occured an error: ${(err as Error)?.message}`);
         }
