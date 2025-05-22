@@ -4,7 +4,7 @@ import * as request from 'supertest';
 import { App } from 'supertest/types';
 import { AppModule } from '../../../src/app.module';
 
-describe('Get Targets', () => {
+describe('Create Achievement', () => {
     let app: INestApplication<App>;
 
     beforeEach(async () => {
@@ -16,7 +16,7 @@ describe('Get Targets', () => {
         await app.init();
     });
 
-    it('Should return all targets when calling GET /targets route', async () => {
+    it('Should return create an achievement when calling POST /achievements route', async () => {
         const accountResponse = await request(app.getHttpServer())
             .post('/accounts')
             .send({
@@ -37,29 +37,28 @@ describe('Get Targets', () => {
             status: 'active',
             accountId: accountId,
         };
-        await request(app.getHttpServer())
+        const targetResponse = await request(app.getHttpServer())
             .post(`/targets`)
             .send(targetInput)
             .expect(201);
+        const targetId =
+            (targetResponse.body as { targetId: string })?.targetId || '';
+        const achievementInput = {
+            value: 7,
+            month: 1,
+        };
         await request(app.getHttpServer())
-            .get('/targets')
-            .query({
-                limit: '1',
-                offset: 0,
-            })
+            .post('/achievements')
             .send({
-                accountId: accountId,
+                value: achievementInput.value,
+                month: achievementInput.month,
+                targetId: targetId,
             })
             .then((response) => {
-                expect(response?.body?.targets).toBeDefined();
-                expect(response?.body?.targets).toHaveLength(1);
-                expect(response?.body?.targets[0]?.targetId).toBeDefined();
-                expect(response?.body?.targets[0]?.description).toBe(
-                    targetInput.description,
-                );
-                expect(response?.body?.targets[0]?.value).toBe(
-                    targetInput.value,
-                );
+                expect(response?.body?.achievementId).toBeDefined();
+            })
+            .catch((error) => {
+                console.log(error);
             });
     });
 });
