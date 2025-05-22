@@ -8,6 +8,7 @@ export interface TargetRepository {
         offset: number,
         limit: number,
     ): Promise<TargetEntity[]>;
+    hasTargetById(targetId: string): Promise<boolean>;
 }
 
 export class TargetRepositoryDatabase implements TargetRepository {
@@ -65,6 +66,20 @@ export class TargetRepositoryDatabase implements TargetRepository {
                 );
                 return targetEntity;
             });
+        } catch (err: any) {
+            throw new Error(`Occured an error: ${(err as Error)?.message}`);
+        }
+    }
+
+    async hasTargetById(targetId: string): Promise<boolean> {
+        try {
+            const [target] = await this.dataSource
+                .createQueryBuilder()
+                .select('*')
+                .from('mymetrics.targets', 'targets')
+                .where('targets.target_id = :targetId', { targetId })
+                .execute();
+            return !!target?.target_id;
         } catch (err: any) {
             throw new Error(`Occured an error: ${(err as Error)?.message}`);
         }
