@@ -3,8 +3,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AccountController } from './infra/adapters/AccountController';
-import { TargetController } from './infra/adapters/TargetController';
+import { AccountController } from '@infra/adapters/AccountController';
+import { TargetController } from '@infra/adapters/TargetController';
+import { AchievementController } from '@infra/adapters/AchievementController';
 
 @Module({
     imports: [
@@ -24,7 +25,12 @@ import { TargetController } from './infra/adapters/TargetController';
             inject: [ConfigService],
         }),
     ],
-    controllers: [TargetController, AccountController, AppController],
+    controllers: [
+        TargetController,
+        AccountController,
+        AchievementController,
+        AppController,
+    ],
     providers: [AppService],
 })
 export class AppModule {}

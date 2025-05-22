@@ -22,3 +22,10 @@ create table mymetrics.targets (
 	frequency text not null,
 	account_id uuid not null
 );
+
+create table mymetrics.achievements (
+	achievement_id uuid primary key,
+	month int not null,
+	value float not null,
+	target_id uuid not null
+);
