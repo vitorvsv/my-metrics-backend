@@ -61,8 +61,8 @@ describe('Create achievement test suite', () => {
             description: 'Estudar inglês',
             frequency: 'monthly',
             value: 17,
-            startDate: new Date(2025, 0, 1),
-            endDate: new Date(2025, 11, 31),
+            startDate: '2025-01-01T03:00:00.000Z',
+            endDate: '2025-12-31T03:00:00.000Z',
             status: 'active',
             accountId: account.accountId,
         };

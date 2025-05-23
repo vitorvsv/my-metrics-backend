@@ -1,15 +1,15 @@
 import * as crypto from 'crypto';
 import { DataSource } from 'typeorm';
-import { SignupUseCase } from '../../../../src/application/usecases/SignupUseCase';
+import { SignupUseCase } from '@application/usecases/SignupUseCase';
 import {
     AccountRepository,
     AccountRepositoryDatabase,
-} from '../../../../src/infra/repositories/AccountRepository';
-import CreateTargetUseCase from '../../../../src/application/usecases/CreateTargetUseCase';
+} from '@infra/repositories/AccountRepository';
+import CreateTargetUseCase from '@application/usecases/CreateTargetUseCase';
 import {
     TargetRepository,
     TargetRepositoryDatabase,
-} from '../../../../src/infra/repositories/TargetRepository';
+} from '@infra/repositories/TargetRepository';
 
 let datasource: DataSource;
 let accountRepository: AccountRepository;
@@ -48,8 +48,8 @@ describe('Create target test suite', () => {
             description: 'Estudar inglês',
             frequency: 'monthly',
             value: 17,
-            startDate: new Date(2025, 0, 1),
-            endDate: new Date(2025, 11, 31),
+            startDate: '2025-01-01T03:00:00.000Z',
+            endDate: '2025-12-31T03:00:00.000Z',
             status: 'active',
             accountId: account.accountId,
         };
