@@ -11,48 +11,48 @@ export default class TargetEntity {
     private accountId: UUIDVO;
 
     constructor(
-        targetId: UUIDVO,
+        targetId: string,
         description: string,
         frequency: string,
         value: number,
-        startDate: Date,
-        endDate: Date,
+        startDate: string,
+        endDate: string,
         status: string,
-        accountId: UUIDVO,
+        accountId: string,
     ) {
         if (!description.length) throw new Error('Description is required');
         if (!frequency) throw new Error('Frequency is required');
         if (!value || value < 0) throw new Error('Value is required');
-        if (endDate < startDate)
+        if (new Date(endDate) < new Date(startDate))
             throw new Error('End date is less than start date');
-        this.targetId = targetId;
+        this.targetId = new UUIDVO(targetId);
         this.description = description;
         this.frequency = frequency;
         this.value = value;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate = new Date(startDate);
+        this.endDate = new Date(endDate);
         this.status = status;
-        this.accountId = accountId;
+        this.accountId = new UUIDVO(accountId);
     }
 
     static create(
         description: string,
         frequency: string,
         value: number,
-        startDate: Date,
-        endDate: Date,
+        startDate: string,
+        endDate: string,
         status: string,
         accountId: string,
     ) {
         return new TargetEntity(
-            UUIDVO.create(),
+            UUIDVO.create().getValue(),
             description,
             frequency,
             value,
             startDate,
             endDate,
             status,
-            new UUIDVO(accountId),
+            new UUIDVO(accountId).getValue(),
         );
     }
 
