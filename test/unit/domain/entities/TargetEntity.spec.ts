@@ -5,8 +5,8 @@ const targetEntityInput = {
     description: 'Estudar inglês',
     frequency: 'monthly',
     value: 17,
-    startDate: new Date(2025, 0, 1),
-    endDate: new Date(2025, 11, 31),
+    startDate: '2025-01-01T03:00:00.000Z',
+    endDate: '2025-12-31T03:00:00.000Z',
     status: 'active',
     accountId: UUIDVO.create().getValue(),
 };
@@ -34,8 +34,8 @@ describe('TargetEntity test suite', () => {
         expect(target.getDescription()).toEqual(input.description);
         expect(target.getFrequency()).toEqual(input.frequency);
         expect(target.getValue()).toEqual(input.value);
-        expect(target.getStartDate()).toEqual(input.startDate);
-        expect(target.getEndDate()).toEqual(input.endDate);
+        expect(target.getStartDate().toISOString()).toEqual(input.startDate);
+        expect(target.getEndDate().toISOString()).toEqual(input.endDate);
         expect(target.getStatus()).toEqual(input.status);
         expect(target.getAccountId()).toBeInstanceOf(UUIDVO);
     });
@@ -97,8 +97,8 @@ describe('TargetEntity test suite', () => {
     it('Should throw an error if endDate is less than startDate', () => {
         const input = {
             ...targetEntityInput,
-            endDate: new Date(2024, 0, 1),
-            startDate: new Date(2025, 0, 1),
+            endDate: '2024-01-01T03:00:00.000Z',
+            startDate: '2025-01-01T03:00:00.000Z',
         };
         expect(() => {
             TargetEntity.create(
