@@ -10,7 +10,7 @@ It is a project developed to be used as a study case for the author, so if you h
 $ npm install
 ```
 
-## UP the database
+## UP Database
 
 ```bash
 $ docker-compose up -d
