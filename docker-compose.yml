@@ -9,3 +9,19 @@ services:
       - "5432:5432"
     volumes:
       - ./create.sql:/docker-entrypoint-initdb.d/init.sql
+  npm:
+    image: 'node:20'
+    container_name: npm
+    working_dir: /app
+    entrypoint: ["npm"]
+    volumes:
+      - .:/app
+  my-metrics-backend:
+      image: 'node:20'
+      container_name: my-metrics-backend
+      working_dir: /app
+      ports:
+        - '3000:3000'
+      volumes:
+        - .:/app
+      command: ["npm", "start", "dev"]
