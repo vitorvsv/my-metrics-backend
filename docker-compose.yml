@@ -1,12 +1,23 @@
 services:
-  postgres:
+  my_metrics_db:
     container_name: my_metrics_db
-    image: postgres:14.3
+    image: postgres:18
     environment:
       POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: app
+      POSTGRES_DB: mymetrics
     ports:
       - "5432:5432"
+    volumes:
+      - ./create.sql:/docker-entrypoint-initdb.d/init.sql
+      - my_metrics_db_data:/var/lib/postgresql
+  my_metrics_db_test:
+    container_name: my_metrics_db_test
+    image: postgres:18
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: mymetrics
+    ports:
+      - "5433:5432"
     volumes:
       - ./create.sql:/docker-entrypoint-initdb.d/init.sql
   npm:
@@ -19,9 +30,14 @@ services:
   my-metrics-backend:
       image: 'node:20'
       container_name: my-metrics-backend
+      depends_on:
+        - my_metrics_db
       working_dir: /app
       ports:
         - '3000:3000'
       volumes:
         - .:/app
       command: ["npm", "start", "dev"]
+
+volumes:
+  my_metrics_db_data:

@@ -5,10 +5,56 @@ GET http://localhost:3000/targets
 Content-Type: application/json
 
 {
-    "accountId": "9ec44508-cd9e-4495-adf6-5964b9ad0050"
+    "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
 }
 ###
 
+
+###
+POST http://localhost:3000/targets
+Content-Type: application/json
+
+{
+    "description": "Ir na academia",
+    "frequency": "monthly",
+    "value": 10,
+    "startDate": "2025-01-01T03:00:00.000Z",
+    "endDate": "2025-12-31T03:00:00.000Z",
+    "status": "active",
+    "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
+}
+###
+
+
+###
+POST http://localhost:3000/targets
+Content-Type: application/json
+
+{
+    "description": "Fazer karate",
+    "frequency": "monthly",
+    "value": 13,
+    "startDate": "2025-01-01T03:00:00.000Z",
+    "endDate": "2025-12-31T03:00:00.000Z",
+    "status": "active",
+    "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
+}
+###
+
+###
+POST http://localhost:3000/targets
+Content-Type: application/json
+
+{
+    "description": "Correr",
+    "frequency": "monthly",
+    "value": 13,
+    "startDate": "2025-01-01T03:00:00.000Z",
+    "endDate": "2025-12-31T03:00:00.000Z",
+    "status": "active",
+    "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
+}
+###
 
 ###
 POST http://localhost:3000/targets
@@ -21,9 +67,25 @@ Content-Type: application/json
     "startDate": "2025-01-01T03:00:00.000Z",
     "endDate": "2025-12-31T03:00:00.000Z",
     "status": "active",
-    "accountId": "9ec44508-cd9e-4495-adf6-5964b9ad0050"
+    "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
 }
 ###
+
+###
+POST http://localhost:3000/targets
+Content-Type: application/json
+
+{
+    "description": "Estudar tecnologia",
+    "frequency": "monthly",
+    "value": 13,
+    "startDate": "2025-01-01T03:00:00.000Z",
+    "endDate": "2025-12-31T03:00:00.000Z",
+    "status": "active",
+    "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
+}
+###
+
 
 ###
 GET http://localhost:3000/accounts/9ec44508-cd9e-4495-adf6-5964b9ad0050
@@ -40,3 +102,90 @@ Content-Type: application/json
     "password": "Teste@123456"
 }
 ###
+
+
+###
+POST http://localhost:3000/achievements
+Content-Type: application/json
+
+{
+    "month": 4,
+    "value": 21,
+    "targetId": "9a19f82d-25b4-4cd2-a38e-e51b77414e22" 
+}
+###
+
+# Id da conta
+# 06092d96-83ed-49e8-9cb2-0b2da52df9a7
+
+# Targets
+{
+  "targets": [
+    {
+      "targetId": "13f6a96f-23b2-4020-9755-a5df3534826e",
+      "description": "Ir na academia",
+      "frequency": "monthly",
+      "value": 10,
+      "startDate": "2025-01-01T03:00:00.000Z",
+      "endDate": "2025-12-31T03:00:00.000Z",
+      "status": "active",
+      "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
+    },
+    {
+      "targetId": "9a1ec3b0-c084-4962-8b55-e1ba44bf5b4b",
+      "description": "Fazer karate",
+      "frequency": "monthly",
+      "value": 13,
+      "startDate": "2025-01-01T03:00:00.000Z",
+      "endDate": "2025-12-31T03:00:00.000Z",
+      "status": "active",
+      "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
+    },
+    {
+      "targetId": "ce4e1d29-f9f6-49b0-b695-93d95d765e7b",
+      "description": "Correr",
+      "frequency": "monthly",
+      "value": 13,
+      "startDate": "2025-01-01T03:00:00.000Z",
+      "endDate": "2025-12-31T03:00:00.000Z",
+      "status": "active",
+      "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
+    },
+    {
+      "targetId": "d2749732-84bc-41e1-81a2-1e7ddf872050",
+      "description": "Estudar inglês",
+      "frequency": "monthly",
+      "value": 17,
+      "startDate": "2025-01-01T03:00:00.000Z",
+      "endDate": "2025-12-31T03:00:00.000Z",
+      "status": "active",
+      "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
+    },
+    {
+      "targetId": "9a19f82d-25b4-4cd2-a38e-e51b77414e22",
+      "description": "Estudar tecnologia",
+      "frequency": "monthly",
+      "value": 13,
+      "startDate": "2025-01-01T03:00:00.000Z",
+      "endDate": "2025-12-31T03:00:00.000Z",
+      "status": "active",
+      "accountId": "06092d96-83ed-49e8-9cb2-0b2da52df9a7"
+    }
+  ]
+}
+
+
+
+{
+  "targets": [
+    "targetId": {
+      "targetName": "Ir na academia",
+      "metrics": [
+        {
+          "month": 3,
+          "percMonth": 90
+        }
+      ]
+    }
+  ]
+}
