@@ -32,6 +32,7 @@ services:
       container_name: my-metrics-backend
       depends_on:
         - my_metrics_db
+        - my_metrics_db_test
       working_dir: /app
       ports:
         - '3000:3000'
