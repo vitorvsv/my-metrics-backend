@@ -7,6 +7,7 @@ import {
 } from '../../../../src/infra/repositories/AccountRepository';
 import { GetAccountUseCase } from '../../../../src/application/usecases/GetAccountUseCase';
 import { PasswordEncryptedVO } from '../../../../src/domain/vo/PasswordEncryptedVO';
+import { getTestDataSourceOptions } from '../../test-datasource';
 
 let datasource: DataSource;
 let accountRepository: AccountRepository;
@@ -14,16 +15,7 @@ let signupUseCase: SignupUseCase;
 let getAccountUseCase: GetAccountUseCase;
 
 beforeAll(async () => {
-    datasource = new DataSource({
-        type: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        username: 'postgres',
-        password: '123456',
-        database: 'app',
-        entities: [],
-        synchronize: true,
-    });
+    datasource = new DataSource(getTestDataSourceOptions());
     await datasource.initialize();
     accountRepository = new AccountRepositoryDatabase(datasource);
     signupUseCase = new SignupUseCase(accountRepository);
